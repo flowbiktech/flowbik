@@ -18,7 +18,7 @@
 ## 🚀 Live Demo
 
 Check out the live website here:  
-🌐 [https://nyxus.ai](https://nyxus.ai) *(replace with actual URL after deployment)*
+🌐 [https://nyxus.ai](https://flowbik.com) *(replace with actual URL after deployment)*
 
 ---
 
@@ -28,5 +28,5 @@ Clone the repo:
 
 ```bash
 git clone https://github.com/nyxus-ai/nyxus.ai.git
-cd nyxus.ai
-#  softzenlabs
+cd flowbik
+#  flowbik
