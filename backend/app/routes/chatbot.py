@@ -1,3 +1,4 @@
+import re
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import os
@@ -21,6 +22,20 @@ class ChatRequest(BaseModel):
     message: str
 
 
+def _contains_image_input(text: str) -> bool:
+    """Detect if the message contains image data or image references."""
+    # Data URI (base64 image) like data:image/png;base64,...
+    if re.search(r"data:image/", text):
+        return True
+    # Image file extensions in URLs or file references
+    if re.search(r"\.(png|jpg|jpeg|gif|bmp|webp|svg|ico)($|\s|\?|#)", text, re.IGNORECASE):
+        return True
+    # Inline base64 blob prefixed with data:image (covers pasted images)
+    if re.search(r"data:image/\w+;base64,\s*[A-Za-z0-9+/]", text):
+        return True
+    return False
+
+
 def load_knowledge_base() -> list | dict:
     """Load knowledge base from JSON file."""
     kb_path = Path(__file__).resolve().parent.parent / "data" / "knowledge_base.json"
@@ -35,9 +50,15 @@ def load_knowledge_base() -> list | dict:
 
 @router.post("/")
 async def chat(req: ChatRequest):
-    try:
-        knowledge_base = load_knowledge_base()
+    knowledge_base = load_knowledge_base()
 
+    if _contains_image_input(req.message):
+        raise HTTPException(
+            status_code=400,
+            detail="This model does not support image input. Please send text-only messages."
+        )
+
+    try:
         system_prompt = """You are SoftZenLabs' chatbot assistant.
 Always answer as a representative of SoftZenLabs.
 

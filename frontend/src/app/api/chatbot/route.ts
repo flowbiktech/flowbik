@@ -13,15 +13,15 @@ export async function POST(req: Request) {
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
       return NextResponse.json(
-        { bot_reply: "Oops! Something went wrong on our end." },
+        { bot_reply: errorData.detail || "Oops! Something went wrong on our end." },
         { status: response.status }
       );
     }
 
+    const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
     console.error("Proxy error:", error);
