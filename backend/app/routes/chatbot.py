@@ -10,10 +10,6 @@ from pathlib import Path
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    raise RuntimeError("GEMINI_API_KEY is not set in .env")
-
-genai.configure(api_key=GEMINI_API_KEY)
 
 router = APIRouter()
 
@@ -50,6 +46,13 @@ def load_knowledge_base() -> list | dict:
 
 @router.post("/")
 async def chat(req: ChatRequest):
+    if not GEMINI_API_KEY:
+        raise HTTPException(
+            status_code=500,
+            detail="Server configuration error: GEMINI_API_KEY is not set."
+        )
+
+    genai.configure(api_key=GEMINI_API_KEY)
     knowledge_base = load_knowledge_base()
 
     if _contains_image_input(req.message):
@@ -73,7 +76,7 @@ Rules:
             kb=json.dumps(knowledge_base, indent=2)
         )
 
-        model = genai.GenerativeModel("gemini-flash-latest")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(
             f"{system_prompt}\n\nUser: {req.message}\nAssistant:"
         )
