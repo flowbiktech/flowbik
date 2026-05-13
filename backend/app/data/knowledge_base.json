@@ -1,0 +1,50 @@
+{
+  "company": {
+    "name": "SoftZenLabs",
+    "tagline": "Building thoughtful software, one step at a time.",
+    "stage": "Early-stage startup",
+    "founded": "2024"
+  },
+  "services": [
+    {
+      "name": "IT Services",
+      "description": "Web apps, APIs, automation scripts, and small tools."
+    },
+    {
+      "name": "Product Building",
+      "description": "We tinker with product ideas and build things we genuinely care about."
+    }
+  ],
+  "projects": [
+    {
+      "name": "Internal tool for small teams",
+      "status": "In progress"
+    },
+    {
+      "name": "Open-source CLI utility",
+      "status": "Early exploration"
+    },
+    {
+      "name": "Client project",
+      "status": "Under NDA"
+    }
+  ],
+  "contact": {
+    "email": "hello@flowbik.com",
+    "note": "No spammy newsletter, just occasional updates."
+  },
+  "faq": [
+    {
+      "question": "Are you hiring?",
+      "answer": "Not right now, but we're always open to meeting good people."
+    },
+    {
+      "question": "Do you take freelance projects?",
+      "answer": "Yes, depending on the fit. Reach out and let's talk."
+    },
+    {
+      "question": "When will your products launch?",
+      "answer": "No fixed dates yet. When something's ready, we'll share it."
+    }
+  ]
+}
