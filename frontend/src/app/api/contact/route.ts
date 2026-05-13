@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 
 // Domain verified ✅ — sending from hello@flowbik.com
-const FROM = "SoftZenLabs <hello@flowbik.com>";
+const FROM = "FlowBik <hello@flowbik.com>";
 const OWNER_EMAIL = "hello@flowbik.com";
 const DOMAIN_VERIFIED = true;
 
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const ownerHtml = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0e0e1a;color:#e4e4f0;border-radius:12px;overflow:hidden;">
         <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:28px 32px;">
-          <h1 style="margin:0;font-size:22px;font-weight:700;color:white;">New Message — SoftZenLabs</h1>
+          <h1 style="margin:0;font-size:22px;font-weight:700;color:white;">New Message — FlowBik</h1>
         </div>
         <div style="padding:32px;">
           <table style="width:100%;border-collapse:collapse;">
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
           </div>
         </div>
         <div style="padding:16px 32px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:#52525b;">
-          Sent via SoftZenLabs contact form · hello@flowbik.com
+          Sent via FlowBik contact form · hello@flowbik.com
         </div>
       </div>
     `;
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
           </p>
         </div>
         <div style="padding:16px 32px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:#52525b;">
-          SoftZenLabs · hello@flowbik.com · Automated confirmation
+          FlowBik · hello@flowbik.com · Automated confirmation
         </div>
       </div>
     `;
@@ -100,7 +100,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: FROM,
         to: [email],
-        subject: "We received your message — SoftZenLabs",
+        subject: "We received your message — FlowBik",
         html: userHtml,
       });
     }
