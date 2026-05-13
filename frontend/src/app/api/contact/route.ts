@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Domain verified ✅ — sending from hello@flowbik.com
 const FROM = "SoftZenLabs <hello@flowbik.com>";
@@ -11,6 +10,7 @@ const DOMAIN_VERIFIED = true;
 
 export async function POST(req: Request) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, email, service, message } = await req.json();
 
     if (!name || !email || !message) {
