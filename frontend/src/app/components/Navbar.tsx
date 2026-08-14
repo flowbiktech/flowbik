@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
           <Image
-            src="/flowbik.svg"
+            src="/logo.svg"
             alt="Flowbik Logo"
             width={28}
             height={28}

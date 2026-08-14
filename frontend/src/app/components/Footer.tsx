@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/flowbik.svg"
+                src="/logo.svg"
                 alt="Flowbik Logo"
                 width={28}
                 height={28}
