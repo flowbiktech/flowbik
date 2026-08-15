@@ -13,6 +13,10 @@ const services = [
   "Other",
 ];
 
+// FastAPI backend URL — set NEXT_PUBLIC_API_URL in Vercel environment variables
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:8000";
+
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
@@ -42,7 +46,7 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_URL}/api/contact/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -54,7 +58,7 @@ export default function Contact() {
         setTimeout(() => setStatus("idle"), 7000);
       } else {
         const data = await res.json().catch(() => ({}));
-        setErrorMsg(data.error || "Failed to send. Please try again.");
+        setErrorMsg(data.detail || data.error || "Failed to send. Please try again.");
         setStatus("error");
         setTimeout(() => { setStatus("idle"); setErrorMsg(""); }, 5000);
       }
