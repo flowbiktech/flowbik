@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Mail, Linkedin, Github, Twitter, Send, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Instagram, X, Send, ArrowRight } from "lucide-react";
 
 const services = [
   "AI Integration",
@@ -125,14 +125,20 @@ export default function Contact() {
                 <p className="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">Follow Us</p>
                 <div className="flex gap-3">
                   {[
-                    { Icon: Linkedin, href: "#", label: "LinkedIn" },
-                    { Icon: Github, href: "#", label: "GitHub" },
-                    { Icon: Twitter, href: "#", label: "Twitter" },
+                    {
+                      Icon: Linkedin,
+                      href: "https://www.linkedin.com/company/flowbiktech/posts/?viewAsMember=true",
+                      label: "LinkedIn",
+                    },
+                    { Icon: Instagram, href: "https://www.instagram.com/flowbik.ai/", label: "Instagram" },
+                    { Icon: X, href: "https://x.com/FlowbikTech", label: "X (Twitter)" },
                   ].map(({ Icon, href, label }) => (
                     <a
                       key={label}
                       href={href}
                       aria-label={label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-white/[0.08] flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:border-indigo-500/50 hover:text-indigo-500 transition-colors"
                     >
                       <Icon className="w-4 h-4" />

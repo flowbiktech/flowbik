@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram, X } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -28,14 +28,20 @@ export default function Footer() {
             <div className="flex gap-3">
               {[
                 { Icon: Mail, href: "mailto:hello@flowbik.com", label: "Email" },
-                { Icon: Linkedin, href: "#", label: "LinkedIn" },
-                { Icon: Github, href: "#", label: "GitHub" },
-                { Icon: Twitter, href: "#", label: "Twitter" },
+                {
+                  Icon: Linkedin,
+                  href: "https://www.linkedin.com/company/flowbiktech/posts/?viewAsMember=true",
+                  label: "LinkedIn",
+                },
+                { Icon: Instagram, href: "https://www.instagram.com/flowbik.ai/", label: "Instagram" },
+                { Icon: X, href: "https://x.com/FlowbikTech", label: "X (Twitter)" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="w-8 h-8 rounded-lg border border-zinc-200 dark:border-white/[0.08] flex items-center justify-center text-zinc-400 hover:text-indigo-500 hover:border-indigo-500/40 transition-colors"
                 >
                   <Icon className="w-3.5 h-3.5" />
